@@ -1,8 +1,14 @@
 import { notFound } from "next/navigation";
 import TopicNotesView from "components/topic-notes-view";
-import { formatDisplayDate, getTopicBySlug } from "lib/notes";
+import { formatDisplayDate, getAllTopics, getTopicBySlug } from "lib/notes";
 
-export const dynamic = "force-dynamic";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getAllTopics().map((topic) => ({
+    topic: topic.slug
+  }));
+}
 
 export default function TopicPage({ params }) {
   const topic = getTopicBySlug(params.topic);

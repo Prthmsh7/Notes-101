@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  outputFileTracing: false,
   reactStrictMode: true,
   webpack: (config, { dev }) => {
     if (dev) {

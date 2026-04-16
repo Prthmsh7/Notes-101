@@ -1,8 +1,6 @@
 import HomeDashboard from "components/home-dashboard";
 import { formatDisplayDate, getAllNotes, getAllTags, getAllTopics } from "lib/notes";
 
-export const dynamic = "force-dynamic";
-
 export default function HomePage() {
   const topics = getAllTopics().map((topic) => ({
     ...topic,
