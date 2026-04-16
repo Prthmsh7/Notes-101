@@ -1,8 +1,17 @@
 import { notFound } from "next/navigation";
 import MarkdownNote from "components/markdown-note";
-import { formatDisplayDate, getTopicBySlug, getTopicNavigation } from "lib/notes";
+import { formatDisplayDate, getAllTopics, getTopicBySlug, getTopicNavigation } from "lib/notes";
 
-export const dynamic = "force-dynamic";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getAllTopics().flatMap((topic) =>
+    topic.notes.map((note) => ({
+      topic: topic.slug,
+      slug: note.slug
+    }))
+  );
+}
 
 export default function NotePage({ params }) {
   const topic = getTopicBySlug(params.topic);

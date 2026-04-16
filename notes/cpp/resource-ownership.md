@@ -6,11 +6,12 @@ tags:
   - raii
 date: 2026-04-17
 difficulty: Advanced
+order: 8
 ---
 
 ## Core idea
 
-In modern C++, ownership should be explicit. Prefer RAII so resources are acquired in constructors and released in destructors.
+In modern C++, ownership should be explicit. This page is intentionally later in the sequence because memory management concepts make much more sense after the basic language flow already feels natural.
 
 ## Revision points
 

@@ -6,6 +6,7 @@ tags:
   - api-design
 date: 2026-04-17
 difficulty: Intermediate
+order: 2
 ---
 
 ## Core idea
