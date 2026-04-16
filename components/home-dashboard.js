@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useDeferredValue, useMemo, useState } from "react";
 import { SearchIcon, TopicIcon } from "./topic-icon";
 
-export default function HomeDashboard({ notes, topics, totalTags }) {
+export default function HomeDashboard({ notes, topics }) {
   const [query, setQuery] = useState("");
-  const [selectedTopicSlug, setSelectedTopicSlug] = useState(topics[0]?.slug || "");
   const deferredQuery = useDeferredValue(query.trim().toLowerCase());
 
   const filteredNotes = useMemo(() => {
@@ -25,9 +24,6 @@ export default function HomeDashboard({ notes, topics, totalTags }) {
     const matchedTopicSlugs = new Set(filteredNotes.map((note) => note.topicSlug));
     return topics.filter((topic) => topic.searchText.includes(deferredQuery) || matchedTopicSlugs.has(topic.slug));
   }, [deferredQuery, filteredNotes, topics]);
-
-  const selectedTopic =
-    filteredTopics.find((topic) => topic.slug === selectedTopicSlug) || filteredTopics[0] || topics[0] || null;
 
   const visibleResults = filteredNotes.slice(0, 8);
 
@@ -57,57 +53,8 @@ export default function HomeDashboard({ notes, topics, totalTags }) {
         </header>
 
         <section className="catalog-panel">
-          <div className="catalog-panel-inner">
-            <div className="hero-grid">
-              <div className="hero-copy">
-                <p className="section-kicker">Knowledge revision system</p>
-                <h1 className="catalog-title">Build skills that stand out</h1>
-                <p className="catalog-lead">
-                  Your notes are now the source of truth. Browse topics, open individual Markdown
-                  notes, and revise fast from a clean reading-focused interface.
-                </p>
-                <div className="hero-stats">
-                  <div>
-                    <strong>{topics.length}</strong>
-                    <span>topics</span>
-                  </div>
-                  <div>
-                    <strong>{notes.length}</strong>
-                    <span>notes</span>
-                  </div>
-                  <div>
-                    <strong>{totalTags}</strong>
-                    <span>tags</span>
-                  </div>
-                </div>
-              </div>
-
-              {selectedTopic ? (
-                <aside className="focus-panel">
-                  <p className="focus-label">Selected topic</p>
-                  <div className="focus-panel-top">
-                    <TopicIcon name={selectedTopic.icon} />
-                    <div>
-                      <h2>{selectedTopic.title}</h2>
-                      <span>{selectedTopic.noteCount} note{selectedTopic.noteCount === 1 ? "" : "s"}</span>
-                    </div>
-                  </div>
-                  <p className="focus-summary">{selectedTopic.summary}</p>
-                  <div className="focus-meta">
-                    {selectedTopic.tags.slice(0, 4).map((tag) => (
-                      <span key={tag}>#{tag}</span>
-                    ))}
-                  </div>
-                  {selectedTopic.latestNote ? (
-                    <Link className="panel-link" href={`/topics/${selectedTopic.slug}/${selectedTopic.latestNote.slug}`}>
-                      Open latest note
-                    </Link>
-                  ) : null}
-                </aside>
-              ) : null}
-            </div>
-
-            <div className="catalog-toolbar">
+          <div className="catalog-panel-inner home-shell">
+            <div className="catalog-toolbar home-toolbar">
               <div>
                 <p className="toolbar-label">Detected topics</p>
                 <span className="toolbar-count">
@@ -124,24 +71,15 @@ export default function HomeDashboard({ notes, topics, totalTags }) {
             {filteredTopics.length ? (
               <div className="topic-grid">
                 {filteredTopics.map((topic) => (
-                  <Link
-                    className={`topic-card${selectedTopic?.slug === topic.slug ? " active" : ""}`}
-                    href={`/topics/${topic.slug}`}
-                    key={topic.slug}
-                    onFocus={() => setSelectedTopicSlug(topic.slug)}
-                    onMouseEnter={() => setSelectedTopicSlug(topic.slug)}
-                  >
+                  <Link className="topic-card compact" href={`/topics/${topic.slug}`} key={topic.slug}>
                     <div className="topic-card-top">
                       <TopicIcon name={topic.icon} />
                       <span className="topic-card-count">{topic.noteCount} note{topic.noteCount === 1 ? "" : "s"}</span>
                     </div>
-                    <strong>{topic.title}</strong>
-                    <p>{topic.summary}</p>
-                    <div className="topic-card-tags">
-                      {topic.tags.slice(0, 3).map((tag) => (
-                        <span key={tag}>#{tag}</span>
-                      ))}
+                    <div className="topic-card-body">
+                      <strong>{topic.title}</strong>
                     </div>
+                    <div className="topic-card-action">Open topic</div>
                   </Link>
                 ))}
               </div>
