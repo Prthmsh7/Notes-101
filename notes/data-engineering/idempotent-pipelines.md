@@ -6,6 +6,7 @@ tags:
   - reliability
 date: 2026-04-17
 difficulty: Advanced
+order: 2
 ---
 
 ## Core idea

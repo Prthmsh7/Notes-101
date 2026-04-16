@@ -6,7 +6,7 @@ A Markdown-driven personal revision system built on Next.js.
 
 - Reads Markdown notes from the local `notes/` directory
 - Groups notes by topic folder automatically
-- Parses frontmatter metadata like `title`, `tags`, `date`, and `difficulty`
+- Parses frontmatter metadata like `title`, `tags`, `date`, `difficulty`, and optional `order`
 - Lets you browse:
   - all topics
   - all notes inside a topic
@@ -21,10 +21,12 @@ Put your notes inside topic folders:
 ```text
 notes/
   javascript/
+    javascript-overview.md
     event-loop-checklist.md
   react/
     rendering-model.md
   linux/
+    linux-overview.md
     processes-and-signals.md
 ```
 
@@ -38,8 +40,11 @@ tags:
   - async
 date: 2026-04-17
 difficulty: Intermediate
+order: 2
 ---
 ```
+
+`order` is optional, but it is useful when you want the sidebar tree, page numbers, and previous/next navigation to follow a fixed study sequence.
 
 ## Run Locally
 

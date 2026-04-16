@@ -6,6 +6,7 @@ tags:
   - collections
 date: 2026-04-17
 difficulty: Beginner
+order: 2
 ---
 
 ## Core idea

@@ -120,6 +120,24 @@ export function TopicIcon({ name }) {
           <path {...props} d="M10.1 14.8c1.15.85 2.65.85 3.8 0M9.1 18.55h5.8" />
         </svg>
       );
+    case "architecture":
+      return (
+        <svg aria-hidden="true" className="subject-icon" viewBox="0 0 24 24">
+          <rect {...props} x="3.5" y="5" width="7" height="5" rx="1" />
+          <rect {...props} x="13.5" y="5" width="7" height="5" rx="1" />
+          <rect {...props} x="8.5" y="14" width="7" height="5" rx="1" />
+          <path {...props} d="M7 10v2h10v-2M12 12v2" />
+        </svg>
+      );
+    case "oop":
+      return (
+        <svg aria-hidden="true" className="subject-icon" viewBox="0 0 24 24">
+          <rect {...props} x="4.5" y="4.5" width="6.5" height="6.5" rx="1.1" />
+          <rect {...props} x="13" y="4.5" width="6.5" height="6.5" rx="1.1" />
+          <rect {...props} x="8.75" y="13" width="6.5" height="6.5" rx="1.1" />
+          <path {...props} d="M11 8h2M12 8v5" />
+        </svg>
+      );
     case "cbadge":
       return (
         <svg aria-hidden="true" className="subject-icon" viewBox="0 0 24 24">
