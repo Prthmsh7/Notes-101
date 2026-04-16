@@ -1,5 +1,5 @@
 import HomeDashboard from "components/home-dashboard";
-import { formatDisplayDate, getAllNotes, getAllTags, getAllTopics } from "lib/notes";
+import { formatDisplayDate, getAllNotes, getAllTopics } from "lib/notes";
 
 export default function HomePage() {
   const topics = getAllTopics().map((topic) => ({
@@ -18,5 +18,5 @@ export default function HomePage() {
     dateLabel: formatDisplayDate(note.date)
   }));
 
-  return <HomeDashboard notes={notes} topics={topics} totalTags={getAllTags().length} />;
+  return <HomeDashboard notes={notes} topics={topics} />;
 }
